@@ -3,7 +3,7 @@ Create, edit and modify entities and properties in your wiki using MediaWiki API
 
 ## Importing CSV statements
 
-Run the following script to import a CSV file with properties. The first row must be called 'label' and contain the item's labels. It is necessary to create all items in column 'label' before running the script. The other column names must be the properties that you want to add to each item.
+Run the following script to import a CSV file with properties. The first column must be called 'label' and contain the item's labels. It is necessary to create all items in column 'label' before running the script. The other column names must be the properties that you want to add to each item.
 
 The supported datatypes are:
 
