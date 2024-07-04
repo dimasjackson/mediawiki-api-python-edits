@@ -1,0 +1,42 @@
+[
+    {
+        "label": "TESTE 1",
+        "properties": [
+            {
+                "label": "instance of",
+                "value": "person",
+                "datatype": "item"
+            },
+            {
+                "label": "date of birth",
+                "value": "+2008-08-23T00:00:00Z",
+                "datatype": "datetime"
+            },
+            {
+                "label": "coordinate location",
+                "value": "(40.748433,-73.985656)",
+                "datatype": "coordinates"
+            }
+        ]
+    },
+    {
+        "label": "TESTE 2",
+        "properties": [
+            {
+                "label": "instance of",
+                "value": "person",
+                "datatype": "item"
+            },
+            {
+                "label": "date of birth",
+                "value": "+2009-08-23T00:00:00Z",
+                "datatype": "datetime"
+            },
+            {
+                "label": "coordinate location",
+                "value": "(41.748433,-72.985656)",
+                "datatype": "coordinates"
+            }
+        ]
+    }
+]
