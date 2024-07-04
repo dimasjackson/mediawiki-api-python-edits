@@ -1,0 +1,30 @@
+[
+    {
+        "label": "TESTE item",
+        "description": "description test",
+        "type": "item",
+        "language": "en",
+        "propertyType": ""
+    },
+    {
+        "label": "TESTE prop",
+        "description": "description test",
+        "type": "property",
+        "language": "en",
+        "propertyType": "time"
+    },
+    {
+        "label": "TESTE prop 2",
+        "description": "description test",
+        "type": "property",
+        "language": "en",
+        "propertyType": "globe-coordinate"
+    },
+    {
+        "label": "TESTE prop 3",
+        "description": "description test",
+        "type": "property",
+        "language": "en",
+        "propertyType": "wikibase-item"
+    }
+]

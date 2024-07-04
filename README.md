@@ -1,6 +1,28 @@
 # mediawiki-api-python-edits
 Create, edit and modify entities and properties in your wiki using MediaWiki API and python. Automate the process of adding claims to your local wiki/wikibase instance itens using CSV files.
 
+## Create Items and Properties
+
+Use the script `create_item_json.py` to create items from a JSON file like the example in `create_item.json`. To run the script, execute the following line in Terminal/CMD:
+```
+python create_item_json.py --url http://mywiki/w/api.php --bot_user user@botname --bot_password abcd123456 --json_file create_item.json
+```
+
+Supported datatypes for properties are
+* string: Represents simple text.
+* monolingual-text: Text with an associated language tag.
+* external-identifier: Identifiers that link to external databases.
+* URL: Links to web resources.
+* quantity: Numerical values, optionally with units.
+* time: Points in time, dates, or timespans.
+* globe-coordinate: Geographic coordinates.
+* wkibase-item: Links to other Wikibase items.
+* property: Links to Wikibase properties.
+* commons-media: Links to media files on Wikimedia Commons.
+* geoshape: Geospatial shapes.
+* tabular-data: Links to tabular datasets.
+* math: Mathematical expressions in LaTeX format.
+
 ## Importing JSON file statements
 The script `import_json.py` add properties to existing items in your Wikibase instance. The JSON must follow the schema in `data.json` example. To run the script, execute the following line in Terminal/CMD:
 ```

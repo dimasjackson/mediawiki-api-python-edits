@@ -47,31 +47,31 @@ class WikibaseAPI:
         response.raise_for_status()
         return response.json()
 
-    def create_item(self, label, description):
+    def create_item(self, label, description, language="en"):
         entity_data = {
             "new": "item",
-            "data": f'{{"labels": {{"en": {{"language": "en", "value": "{label}"}}}}, "descriptions": {{"en": {{"language": "en", "value": "{description}"}}}}}}'
+            "data": f'{{"labels": {{"{language}": {{"language": "{language}", "value": "{label}"}}}}, "descriptions": {{"{language}": {{"language": "{language}", "value": "{description}"}}}}}}'
         }
         return self._edit_entity(entity_data)
 
-    def edit_item(self, item_id, label=None, description=None):
+    def edit_item(self, item_id, label=None, description=None, language="en"):
         entity_data = {
             "id": item_id,
-            "data": f'{{"labels": {{"en": {{"language": "en", "value": "{label}"}}}}, "descriptions": {{"en": {{"language": "en", "value": "{description}"}}}}}}'
+            "data": f'{{"labels": {{"{language}": {{"language": "{language}", "value": "{label}"}}}}, "descriptions": {{"{language}": {{"language": "{language}", "value": "{description}"}}}}}}'
         }
         return self._edit_entity(entity_data)
 
-    def create_property(self, label, property_type):
+    def create_property(self, label, property_type, description, language="en"):
         entity_data = {
             "new": "property",
-            "data": f'{{"labels": {{"en": {{"language": "en", "value": "{label}"}}}}, "datatype": "{property_type}"}}'
+            "data": f'{{"labels": {{"{language}": {{"language": "{language}", "value": "{label}"}}}}, "datatype": "{property_type}", "descriptions": {{"{language}": {{"language": "{language}", "value": "{description}"}}}}}}'
         }
         return self._edit_entity(entity_data)
 
-    def edit_property(self, property_id, label=None, property_type=None):
+    def edit_property(self, property_id, label=None, property_type=None, language="en"):
         entity_data = {
             "id": property_id,
-            "data": f'{{"labels": {{"en": {{"language": "en", "value": "{label}"}}}}, "datatype": "{property_type}"}}'
+            "data": f'{{"labels": {{"{language}": {{"language": "{language}", "value": "{label}"}}}}, "datatype": "{property_type}"}}'
         }
         return self._edit_entity(entity_data)
 
