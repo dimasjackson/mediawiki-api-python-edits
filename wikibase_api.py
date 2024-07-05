@@ -128,3 +128,45 @@ class WikibaseAPI:
         }
         r = self.session.get(url=self.base_url, params=params)
         return r.json()
+    
+    def get_statement_id(self, item_qid, property_pid):
+        params={
+            "action": "wbgetclaims",
+            "entity": item_qid,
+            "property": property_pid,
+            "format": "json"
+        }
+        r = self.session.get(url=self.base_url, params=params)
+        return r.json()
+
+    def add_qualifier(self, statement_id, property_pid, value, value_type):
+        if value_type == "item":
+            formatted_value = f'{{"entity-type":"item","numeric-id":{int(value)}}}'
+        elif value_type == "string":
+            formatted_value = f'"{value}"'
+        elif value_type == "quantity":
+            formatted_value = f'{{"amount":"+{value}","unit":"1"}}'
+        elif value_type == "datetime":
+            dict={"time": value, "timezone": 0, "before": 0, "after": 0, "precision": 11, "calendarmodel": "http://www.wikidata.org/entity/Q1985727"}
+            formatted_value = json.dumps(dict)
+        elif value_type == "coordinate":
+            # Remove parentheses and split by comma
+            coordinates_list = value.strip('()').split(',')
+            # Convert strings to float and create a tuple
+            coordinates_tuple = tuple(map(float, coordinates_list))
+            dict={"latitude": coordinates_tuple[0], "longitude": coordinates_tuple[1], "precision": 0.000001, "globe": "http://www.wikidata.org/entity/Q2"}
+            formatted_value = json.dumps(dict)
+        else:
+            raise ValueError("Unsupported value type")
+        data={
+            "action": "wbsetqualifier",
+            "claim": statement_id,
+            "property": property_pid,
+            "snaktype": "value",
+            "value": formatted_value,
+            "token": self.csrf_token,
+            "format": "json"
+        }
+        response = self.session.post(url=self.base_url, data=data)
+        response.raise_for_status()
+        return response.json()
